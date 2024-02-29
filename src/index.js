@@ -11,7 +11,7 @@ const url = "https://teachablemachine.withgoogle.com/models/tGDfR8Umt/";
 
 let model, labelContainer, maxPredictions;
 
-// Load the image model
+/* Load the model and metadata from the URL */
 async function init() {
   const modelURL = url + "model.json";
   const metadataURL = url + "metadata.json";
@@ -35,6 +35,7 @@ async function init() {
   text.innerHTML = "사진 업로드 (클릭하거나 여기에 이미지를 드롭하세요.)";
 }
 
+/* Predict the image */
 async function predict() {
   // Wait model initializing
   if (!model) {
@@ -137,15 +138,36 @@ async function predict() {
 
     labelContainer.appendChild(container);
 
+    // Display the result
     const resultContainer = document.getElementById("result-container");
     if (highestPrediction.className === "ace") {
-      resultContainer.innerHTML = `사진 분석 결과<br/>당신은<span class="text-3xl sm:text-5xl font-bold text-main"> ${
+      resultContainer.innerHTML = `사진 분석 결과<br/><br/>당신은<span class="text-3xl sm:text-5xl font-bold text-main"> ${
         labelClassToKorean[highestPrediction.className]
-      }</span> 입니다.`;
+      } </span>입니다.`;
     } else {
-      resultContainer.innerHTML = `사진 분석 결과<br/>당신은<span class="text-3xl sm:text-5xl font-bold text-main"> ${
+      resultContainer.innerHTML = `사진 분석 결과<br/><br/>당신은<span class="text-3xl sm:text-5xl font-bold text-main"> ${
         labelClassToKorean[highestPrediction.className]
-      } 폐급</span> 입니다.`;
+      } 폐급 </span>입니다.`;
+    }
+
+    const resultDescription = document
+      .getElementById(highestPrediction.className.toLowerCase())
+      .cloneNode(true);
+    resultDescription.classList = "";
+    resultDescription.classList.add(
+      "mx-auto",
+      "my-12",
+      "sm:my-24",
+      "flex",
+      "flex-col",
+      "items-center",
+      "gap-8"
+    );
+    resultContainer.appendChild(resultDescription);
+
+    if (navigator.share !== undefined) {
+      shareButton.classList.remove("hidden");
+      shareButton.classList.add("flex");
     }
 
     setTimeout(() => {
@@ -239,28 +261,52 @@ function initDropzone() {
     const displayArea = document.getElementById("display-area");
     const labelContainer = document.getElementById("label-container");
     const resultContainer = document.getElementById("result-container");
+    const shareButton = document.getElementById("share-button");
     // Clear the image display area content
     displayArea.innerHTML = "";
     displayArea.classList.add("hidden");
     // Clear Result area content
     labelContainer.innerHTML = "";
     resultContainer.innerHTML = "";
+    shareButton.classList.remove("flex");
+    shareButton.classList.add("hidden");
   });
 }
 
-// Function to display error messages
+/* Function to display error messages */
 function DisplayError(msg) {
   const errorContainer = document.getElementById("error-area");
   errorContainer.classList.remove("hidden"); // Show the error container
   errorContainer.textContent = `⚠️ ${msg} ⚠️`;
 }
 
-// Function to hide error messages
+/* Function to hide error messages */
 function HideError() {
   const errorContainer = document.getElementById("error-area");
   errorContainer.classList.add("hidden"); // Hide the error container
   errorContainer.textContent = ""; // Clear the error message
 }
+
+/* Function to share */
+async function share() {
+  const shareData = {
+    title: "군대 폐급 테스트",
+    text: "당신은 어떤 폐급일까요?",
+    url: "https://dumbpredict.netlify.app/",
+  };
+
+  try {
+    await navigator.share(shareData);
+    console.log("Thanks for sharing!");
+  } catch (err) {
+    DisplayError("공유에 실패했습니다: " + err);
+    console.error("Failed to share:", err);
+  }
+}
+
+// Adding share button event
+const shareButton = document.getElementById("share-button");
+shareButton.addEventListener("click", share);
 
 // Document ready function equivalent for vanilla JS
 document.addEventListener("DOMContentLoaded", function () {
