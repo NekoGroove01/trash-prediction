@@ -139,7 +139,7 @@ async function predict() {
     labelContainer.appendChild(container);
 
     // Display the result
-    const resultContainer = document.getElementById("result-container");
+    const resultContainer = document.getElementById("result-container"); // Get the result container
     if (highestPrediction.className === "ace") {
       resultContainer.innerHTML = `사진 분석 결과<br/><br/>당신은<span class="text-3xl sm:text-5xl font-bold text-main"> ${
         labelClassToKorean[highestPrediction.className]
@@ -150,6 +150,7 @@ async function predict() {
       } 폐급 </span>입니다.`;
     }
 
+    // Adding more description to the result
     const resultDescription = document
       .getElementById(highestPrediction.className.toLowerCase())
       .cloneNode(true);
@@ -165,6 +166,7 @@ async function predict() {
     );
     resultContainer.appendChild(resultDescription);
 
+    // Show Share Button if Supported
     if (navigator.share !== undefined) {
       shareButton.classList.remove("hidden");
       shareButton.classList.add("flex");
@@ -172,7 +174,7 @@ async function predict() {
 
     setTimeout(() => {
       labelContainer.scrollIntoView({ behavior: "smooth", block: "center" });
-    }, 500);
+    }, 500); // Scroll to the result
 
     // Print Actuall % to Screen Events When User Hover The Progress Bar
     progressBarContainer.addEventListener("mouseenter", () => {
@@ -185,7 +187,7 @@ async function predict() {
   });
 }
 
-// Function to initialize the Dropzone component
+/* Function to initialize the Dropzone component */
 function initDropzone() {
   const uploadDropzone = new Dropzone("#image-upload", {
     url: "/file-upload",
@@ -218,11 +220,13 @@ function initDropzone() {
       HideError();
     }
 
+    // Display Loding Icon
+    const loadingArea = document.getElementById("loading-area");
+    loadingArea.classList.remove("hidden");
+    loadingArea.classList.add("flex");
+
     // Display the selected file in our display area:
     const displayArea = document.getElementById("display-area");
-
-    // Visible Display area
-    displayArea.classList.remove("hidden");
 
     // Create an img element and assign blob URL as src attribute
     const imgElement = document.createElement("img");
@@ -247,6 +251,8 @@ function initDropzone() {
     imgElement.onload = async () => {
       try {
         await predict(); // Call predict function after image is added
+        loadingArea.classList.remove("flex"); // Hide the loading icon
+        loadingArea.classList.add("hidden");
       } catch (error) {
         console.error("Help me, Developers! I'm in trouble! 😭", error);
         DisplayError(
@@ -264,7 +270,6 @@ function initDropzone() {
     const shareButton = document.getElementById("share-button");
     // Clear the image display area content
     displayArea.innerHTML = "";
-    displayArea.classList.add("hidden");
     // Clear Result area content
     labelContainer.innerHTML = "";
     resultContainer.innerHTML = "";
@@ -299,7 +304,6 @@ async function share() {
     await navigator.share(shareData);
     console.log("Thanks for sharing!");
   } catch (err) {
-    DisplayError("공유에 실패했습니다: " + err);
     console.error("Failed to share:", err);
   }
 }
