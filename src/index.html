@@ -3,7 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Image Classification</title>
+    <title>폐급 관상 테스트</title>
+    <meta name="author" content="NekoGroove01" />
+    <meta
+      name="description"
+      content="군대 폐급/에이스 유형을 알아보는 관상 테스트입니다."
+    />
     <!-- Noto Sans KR Font From Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -66,9 +71,6 @@
           ※ 보다 정확한 결과를 위해 얼굴 위주의 사진을 올려주세요.<br />
           ※ 본 테스트는 순전히 재미로만 즐겨주세요.
         </p>
-        <p class="text-sm lg:text-lg font-light text-warning">
-          ※ 사진은 서버에 저장되지 않습니다!
-        </p>
       </div>
 
       <!-- Error Message Area -->
@@ -86,12 +88,18 @@
       <div id="label-container" class="mx-auto"></div>
       <div
         id="result-container"
-        class="text-center leading-loose my-24 text-xl sm:!text-3xl text-gray-800"
+        class="text-center leading-loose my-12 sm:my-24 text-xl sm:!text-3xl text-gray-800"
       ></div>
+      <div
+        id="share-button"
+        class="bg-gray-300 w-36 h-12 rounded-full shadow-lg mx-auto hidden justify-center items-center hover:bg-sub transition duration-300 ease-out cursor-pointer text-center font-light text-gray-700"
+      >
+        🔗공유하기
+      </div>
 
       <!-- Descirption Area -->
       <div
-        class="mx-auto mt-80 py-28 border-t-[1px] border-t-gray-600 flex justify-center items-center"
+        class="mx-auto mt-80 py-16 sm-py:-24 border-t-[1px] border-t-gray-600 flex justify-center items-center"
       >
         <h1 class="text-gray-800 text-4xl lg:text-7xl font-bold text-center">
           군대 폐급/에이스 유형
@@ -100,7 +108,8 @@
 
       <div class="w-full flex flex-wrap justify-evenly gap-12 lg:gap-24">
         <div
-          class="bg-white shadow-md rounded-md w-[90%] h-[26rem] p-8 2xl:w-[40%] 2xl:h-[30rem] flex flex-col items-start"
+          id="skinny"
+          class="bg-white shadow-md rounded-md w-[90%] h-[26rem] p-8 2xl:w-[40%] 2xl:h-[30rem] 2xl:p-12 flex flex-col items-start"
         >
           <p class="text-gray-800 text-2xl sm:text-3xl font-bold">
             나대는 폐급
@@ -116,7 +125,8 @@
           </p>
         </div>
         <div
-          class="bg-white shadow-md rounded-md w-[90%] h-[26rem] p-8 2xl:w-[40%] 2xl:h-[30rem] flex flex-col items-start"
+          id="fat"
+          class="bg-white shadow-md rounded-md w-[90%] h-[26rem] p-8 2xl:w-[40%] 2xl:h-[30rem] 2xl:p-12 flex flex-col items-start"
         >
           <p class="text-gray-800 text-2xl sm:text-3xl font-bold">
             파오후 폐급
@@ -132,7 +142,8 @@
           </p>
         </div>
         <div
-          class="bg-white shadow-md rounded-md w-[90%] h-[26rem] p-8 2xl:w-[40%] 2xl:h-[30rem] flex flex-col items-start"
+          id="nasty"
+          class="bg-white shadow-md rounded-md w-[90%] h-[26rem] p-8 2xl:w-[40%] 2xl:h-[30rem] 2xl:p-12 flex flex-col items-start"
         >
           <p class="text-gray-800 text-2xl sm:text-3xl font-bold">
             이기적인 폐급
@@ -149,7 +160,8 @@
           </p>
         </div>
         <div
-          class="bg-white shadow-md rounded-md w-[90%] h-[26rem] p-8 2xl:w-[40%] 2xl:h-[30rem] flex flex-col items-start"
+          id="dumb"
+          class="bg-white shadow-md rounded-md w-[90%] h-[26rem] p-8 2xl:w-[40%] 2xl:h-[30rem] 2xl:p-12 flex flex-col items-start"
         >
           <p class="text-gray-800 text-2xl sm:text-3xl font-bold">
             멍청한 폐급
@@ -165,7 +177,8 @@
           </p>
         </div>
         <div
-          class="bg-white shadow-md rounded-md w-[90%] h-[26rem] p-8 2xl:w-[40%] 2xl:h-[30rem] flex flex-col items-start mb-32"
+          id="ace"
+          class="bg-white shadow-md rounded-md w-[90%] h-[26rem] p-8 2xl:w-[40%] 2xl:h-[30rem] 2xl:p-12 flex flex-col items-start mb-32"
         >
           <p class="text-gray-800 text-2xl sm:text-3xl font-bold">
             A급 (에이스)
