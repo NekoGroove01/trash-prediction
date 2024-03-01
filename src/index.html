@@ -3,11 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>폐급 관상 테스트</title>
+    <title>AI 군대 폐급 관상 테스트</title>
     <meta name="author" content="NekoGroove01" />
     <meta
       name="description"
-      content="군대 폐급/에이스 유형을 알아보는 관상 테스트입니다."
+      content="AI 분석 모델로 군대 폐급/에이스 유형을 알아보는 관상 테스트입니다."
     />
     <!-- Noto Sans KR Font From Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -23,7 +23,7 @@
     ></script>
   </head>
   <body class="bg-gray-100 max-w-full min-h-screen">
-    <header class="absolute -z-10 left-0 top-0 w-screen h-[850px] bg-main">
+    <header class="absolute -z-10 left-0 top-0 w-screen h-[900px] bg-main">
       <!-- Just Background -->
     </header>
     <div class="mx-auto w-[80%] 2xl:max-w-screen-2xl h-full">
@@ -121,9 +121,13 @@
         id="result-container"
         class="text-center leading-loose my-12 sm:my-24 text-xl sm:!text-3xl text-gray-800"
       ></div>
+      <p class="text-center text-lg sm:text-xl font-bold text-gray-800">
+        AI의 예측이므로 결과는 정확하지 않을 수 있습니다.<br />
+        따라서 실제 성격과 상이할 수 있으며, 재미로만 즐겨주세요.
+      </p>
       <div
         id="share-button"
-        class="bg-gray-300 w-36 h-12 rounded-full shadow-lg mx-auto hidden justify-center items-center hover:bg-sub transition duration-300 ease-out cursor-pointer text-center font-light text-gray-700"
+        class="bg-gray-300 w-36 h-12 mt-16 rounded-full shadow-lg mx-auto hidden justify-center items-center hover:bg-sub transition duration-300 ease-out cursor-pointer text-center font-light text-gray-700"
       >
         🔗공유하기
       </div>
@@ -237,7 +241,7 @@
       </p>
       <a
         class="text-gray-100 text-lg font-light transition duration-300 ease-out hover:text-gray-300"
-        href="https://github.com/NekoGroove01"
+        href="https://github.com/NekoGroove01/trash-prediction"
         target="_blank"
       >
         Github to Source Code

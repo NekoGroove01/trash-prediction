@@ -39,6 +39,9 @@ async function init() {
 async function predict() {
   // Wait model initializing
   if (!model) {
+    DisplayError(
+      "AI 모델을 불러오는 중입니다. 잠시만 기다려주세요. (다시 시도해주세요)"
+    );
     return;
   }
   // Predict The Image
@@ -245,7 +248,31 @@ function initDropzone() {
       "text-center"
     );
 
+    // Create a remove button for the uploaded image
+    const removeButton = document.createElement("button");
+    removeButton.textContent = "❌ 사진 지우기 ❌";
+    removeButton.classList.add(
+      "block",
+      "py-3",
+      "px-6",
+      "mx-auto",
+      "my-8",
+      "text-center",
+      "text-normal",
+      "font-light",
+      "text-gray-700",
+      "bg-sub",
+      "rounded-full",
+      "hover:bg-warning",
+      "hover:text-gray-100",
+      "transition-all",
+      "ease-in-out",
+      "duration-300"
+    );
+    removeButton.addEventListener("click", removeImage); // Remove the image when clicked
+
     displayArea.appendChild(imgElement);
+    displayArea.appendChild(removeButton);
 
     // Wait for the img src to be processed/rendered before prediction
     imgElement.onload = async () => {
@@ -254,28 +281,28 @@ function initDropzone() {
         loadingArea.classList.remove("flex"); // Hide the loading icon
         loadingArea.classList.add("hidden");
       } catch (error) {
-        console.error("Help me, Developers! I'm in trouble! 😭", error);
-        DisplayError(
-          "이미지 분석 중 오류가 발생했습니다:",
-          error.message || "Unknown Error!"
-        );
+        console.error("I'm in trouble! 😭", error);
+        DisplayError("이미지 분석 중 오류가 발생했습니다");
       }
     };
   });
 
-  uploadDropzone.on("removedfile", function (file) {
-    const displayArea = document.getElementById("display-area");
-    const labelContainer = document.getElementById("label-container");
-    const resultContainer = document.getElementById("result-container");
-    const shareButton = document.getElementById("share-button");
-    // Clear the image display area content
-    displayArea.innerHTML = "";
-    // Clear Result area content
-    labelContainer.innerHTML = "";
-    resultContainer.innerHTML = "";
-    shareButton.classList.remove("flex");
-    shareButton.classList.add("hidden");
-  });
+  uploadDropzone.on("removedfile", removeImage);
+}
+
+/* Function to remove the uploaded image */
+function removeImage() {
+  const displayArea = document.getElementById("display-area");
+  const labelContainer = document.getElementById("label-container");
+  const resultContainer = document.getElementById("result-container");
+  const shareButton = document.getElementById("share-button");
+  // Clear the image display area content
+  displayArea.innerHTML = "";
+  // Clear Result area content
+  labelContainer.innerHTML = "";
+  resultContainer.innerHTML = "";
+  shareButton.classList.remove("flex");
+  shareButton.classList.add("hidden");
 }
 
 /* Function to display error messages */
