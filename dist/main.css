@@ -560,6 +560,11 @@ video {
   margin-bottom: 3rem;
 }
 
+.my-8 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
 .my-auto {
   margin-top: auto;
   margin-bottom: auto;
@@ -591,6 +596,10 @@ video {
 
 .mr-3 {
   margin-right: 0.75rem;
+}
+
+.mt-16 {
+  margin-top: 4rem;
 }
 
 .mt-24 {
@@ -641,8 +650,8 @@ video {
   height: 26rem;
 }
 
-.h-\[850px\] {
-  height: 850px;
+.h-\[900px\] {
+  height: 900px;
 }
 
 .h-auto {
@@ -828,6 +837,11 @@ video {
   background-color: rgb(67 118 108 / var(--tw-bg-opacity));
 }
 
+.bg-sub {
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 250 229 / var(--tw-bg-opacity));
+}
+
 .bg-third {
   --tw-bg-opacity: 1;
   background-color: rgb(177 148 112 / var(--tw-bg-opacity));
@@ -866,9 +880,19 @@ video {
   padding-right: 0.5rem;
 }
 
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
 .py-12 {
   padding-top: 3rem;
   padding-bottom: 3rem;
+}
+
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
 }
 
 .text-center {
@@ -997,6 +1021,10 @@ video {
   transition-duration: 300ms;
 }
 
+.ease-in-out {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .ease-out {
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
 }
@@ -1060,6 +1088,16 @@ form {
   background-color: rgb(248 250 229 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-warning:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(238 66 102 / var(--tw-bg-opacity));
+}
+
+.hover\:text-gray-100:hover {
+  --tw-text-opacity: 1;
+  color: rgb(243 244 246 / var(--tw-text-opacity));
+}
+
 .hover\:text-gray-300:hover {
   --tw-text-opacity: 1;
   color: rgb(209 213 219 / var(--tw-text-opacity));
@@ -1094,6 +1132,11 @@ form {
 
   .sm\:text-lg {
     font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+
+  .sm\:text-xl {
+    font-size: 1.25rem;
     line-height: 1.75rem;
   }
 }
