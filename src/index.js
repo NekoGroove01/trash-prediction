@@ -323,7 +323,7 @@ function HideError() {
 async function share() {
   const shareData = {
     title: "군대 폐급 테스트",
-    url: "https://nekogroove01.github.io/trash-prediction/",
+    url: window.location.href.toString(),
   };
 
   try {

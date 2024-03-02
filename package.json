@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "deploy": "gh-pages -d dist",
-    "build": "webpack --mode production",
+    "build": "webpack --mode production && gh-pages -d dist",
     "start": "webpack serve --mode development"
   },
   "keywords": [],
