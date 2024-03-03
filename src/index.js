@@ -57,8 +57,8 @@ async function predict() {
     const container = document.createElement("div");
 
     const labelClassToKorean = {
-      Skinny: "나대는",
-      Fat: "뚱뚱한",
+      skinny: "나대는",
+      fat: "뚱뚱한",
       nasty: "이기적인",
       dumb: "멍청한",
       ace: "에이스",
